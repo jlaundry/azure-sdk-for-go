@@ -1,14 +1,24 @@
 # Release History
 
-## 1.6.1 (Unreleased)
+## 1.7.0-beta.1 (2023-05-17)
 
 ### Features Added
-
-### Breaking Changes
+* Restored CAE support for ARM clients.
+* Added supporting features to enable distributed tracing.
+  * Added func `runtime.StartSpan()` for use by SDKs to start spans.
+  * Added method `WithContext()` to `runtime.Request` to support shallow cloning with a new context.
+  * Added field `TracingNamespace` to `runtime.PipelineOptions`.
+  * Added field `Tracer` to `runtime.NewPollerOptions` and `runtime.NewPollerFromResumeTokenOptions` types.
+  * Added field `SpanFromContext` to `tracing.TracerOptions`.
+  * Added methods `Enabled()`, `SetAttributes()`, and `SpanFromContext()` to `tracing.Tracer`.
+  * Added supporting pipeline policies to include HTTP spans when creating clients.
+* Added package `fake` to support generated fakes packages in SDKs.
+  * The package contains public surface area exposed by fake servers and supporting APIs intended only for use by the fake server implementations.
+  * Added an internal fake poller implementation.
 
 ### Bugs Fixed
-
-### Other Changes
+* Retry policy always clones the underlying `*http.Request` before invoking the next policy.
+* Added some non-standard error codes to the list of error codes for unregistered resource providers.
 
 ## 1.6.0 (2023-05-04)
 
